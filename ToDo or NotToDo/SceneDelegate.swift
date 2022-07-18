@@ -11,13 +11,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = ViewController()
+        window?.rootViewController = navagationBarConfiguration()
+    }
+    
+    private func navagationBarConfiguration() -> UINavigationController {
+        let view = ViewController()
+        let nav = UINavigationController(rootViewController: view)
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = UIColor.gray
+        nav.navigationBar.standardAppearance = navBarAppearance
+        nav.navigationBar.scrollEdgeAppearance = navBarAppearance
+        return nav
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
