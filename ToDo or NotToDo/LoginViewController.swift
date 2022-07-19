@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -18,8 +19,11 @@ class LoginViewController: UIViewController {
         return segControl
     }()
     
-    let usernameTextField: UITextField = {
+    let emailTextField: UITextField = {
         var text = UITextField()
+        text.placeholder = "Email"
+        text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+        text.leftViewMode = .always
         text.backgroundColor = .lightGray
         text.layer.cornerRadius = 10
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -28,30 +32,39 @@ class LoginViewController: UIViewController {
     
     let passwordTextField: UITextField = {
         var text = UITextField()
+        text.placeholder = "Password"
+        text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+        text.leftViewMode = .always
+        text.isSecureTextEntry = true
         text.backgroundColor = .lightGray
         text.layer.cornerRadius = 10
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
     
-    let submitButton: UIButton = {
-        var button = UIButton()
-        button.setTitle("Submit", for: .normal)
-        button.backgroundColor = .lightGray
+    lazy var submitButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.title = "Sign Up"
+        config.buttonSize = .large
+        config.baseBackgroundColor = .lightGray
+        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        
+        var button = UIButton(configuration: config, primaryAction: nil)
+        button.addTarget(self, action: #selector(self.buttonPressed(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationItem.title = "WELCOME"
         
         let segmentView: UIView = UIView()
         segmentView.translatesAutoresizingMaskIntoConstraints = false
         segmentView.addSubview(segmentedControl)
         
-        let userInputView: UIStackView = UIStackView(arrangedSubviews: [usernameTextField, passwordTextField])
+        let userInputView: UIStackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField])
         userInputView.translatesAutoresizingMaskIntoConstraints = false
         userInputView.distribution = .equalCentering
         userInputView.axis = .vertical
@@ -77,7 +90,7 @@ class LoginViewController: UIViewController {
             userInputView.heightAnchor.constraint(equalTo: loginStack.heightAnchor, multiplier: 0.2),
             buttonView.heightAnchor.constraint(equalTo: loginStack.heightAnchor, multiplier: 0.4),
             
-            usernameTextField.heightAnchor.constraint(equalToConstant: 50),
+            emailTextField.heightAnchor.constraint(equalToConstant: 50),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             
             segmentedControl.centerXAnchor.constraint(equalTo: segmentView.centerXAnchor),
@@ -89,7 +102,40 @@ class LoginViewController: UIViewController {
     }
 
     @objc func segmentedValueChanged(_ sender:UISegmentedControl!) {
-        print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
+        if segmentedControl.selectedSegmentIndex == 0 {
+            submitButton.setTitle("Sign Up", for: .normal)
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            submitButton.setTitle("Sign In", for: .normal)
+        }
+    }
+    
+    @objc func buttonPressed(_ sender:UIButton!) {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            if let email = emailTextField.text, let password = passwordTextField.text {
+                Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                    if let e = error {
+                        print(e.localizedDescription)
+                    } else {
+                        print("User Created: email: \(result?.user.email)")
+                    }
+                }
+            }
+            
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            if let email = emailTextField.text, let password = passwordTextField.text {
+                Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+                    guard let strongSelf = self else { return }
+                    if let e = error {
+                        print(e.localizedDescription)
+                    } else {
+                        print("Successfully signed in")
+                    }
+                    
+                }
+            }
+        } else {
+            print("Error: Segmented Control Index doesn't exist")
+        }
     }
 }
 
