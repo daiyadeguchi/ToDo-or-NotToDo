@@ -20,11 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func navagationBarConfiguration() -> UINavigationController {
-        let view = ViewController()
+        let view = LoginViewController()
         let nav = UINavigationController(rootViewController: view)
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = UIColor.gray
+        navBarAppearance.backgroundColor = UIColor.lightGray
         nav.navigationBar.standardAppearance = navBarAppearance
         nav.navigationBar.scrollEdgeAppearance = navBarAppearance
         return nav
