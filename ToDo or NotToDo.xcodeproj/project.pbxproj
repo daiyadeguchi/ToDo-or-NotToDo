@@ -16,6 +16,7 @@
 		544ED8532884D15400D73052 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 544ED8522884D15400D73052 /* FirebaseAuth */; };
 		544ED8552884D15400D73052 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 544ED8542884D15400D73052 /* FirebaseFirestore */; };
 		544ED8572884E6F800D73052 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544ED8562884E6F800D73052 /* GoogleService-Info.plist */; };
+		544ED8592888C16B00D73052 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544ED8582888C16B00D73052 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		544ED84528823D8000D73052 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		544ED84728823D8000D73052 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		544ED8562884E6F800D73052 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		544ED8582888C16B00D73052 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				544ED83928823D7F00D73052 /* AppDelegate.swift */,
 				544ED83B28823D7F00D73052 /* SceneDelegate.swift */,
 				544ED83D28823D7F00D73052 /* LoginViewController.swift */,
+				544ED8582888C16B00D73052 /* CategoryViewController.swift */,
 				544ED84228823D8000D73052 /* Assets.xcassets */,
 				544ED84428823D8000D73052 /* LaunchScreen.storyboard */,
 				544ED84728823D8000D73052 /* Info.plist */,
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				544ED8592888C16B00D73052 /* CategoryViewController.swift in Sources */,
 				544ED83E28823D7F00D73052 /* LoginViewController.swift in Sources */,
 				544ED83A28823D7F00D73052 /* AppDelegate.swift in Sources */,
 				544ED83C28823D7F00D73052 /* SceneDelegate.swift in Sources */,
