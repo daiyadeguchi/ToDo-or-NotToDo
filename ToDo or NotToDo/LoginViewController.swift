@@ -116,7 +116,9 @@ class LoginViewController: UIViewController {
                     if let e = error {
                         print(e.localizedDescription)
                     } else {
-                        print("User Created: email: \(result?.user.email)")
+                        let vc = CategoryViewController()
+                        vc.modalPresentationStyle = .fullScreen
+                        self.present(vc, animated: true)
                     }
                 }
             }
@@ -128,7 +130,9 @@ class LoginViewController: UIViewController {
                     if let e = error {
                         print(e.localizedDescription)
                     } else {
-                        print("Successfully signed in")
+                        let vc = CategoryViewController()
+                        vc.modalPresentationStyle = .fullScreen
+                        self!.present(vc, animated: true)
                     }
                     
                 }
