@@ -116,9 +116,7 @@ class LoginViewController: UIViewController {
                     if let e = error {
                         print(e.localizedDescription)
                     } else {
-                        let vc = CategoryViewController()
-                        vc.modalPresentationStyle = .fullScreen
-                        self.present(vc, animated: true)
+                        self.navigationController?.pushViewController(CategoryViewController(), animated: true)
                     }
                 }
             }
@@ -126,13 +124,10 @@ class LoginViewController: UIViewController {
         } else if segmentedControl.selectedSegmentIndex == 1 {
             if let email = emailTextField.text, let password = passwordTextField.text {
                 Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-                    guard let strongSelf = self else { return }
                     if let e = error {
                         print(e.localizedDescription)
                     } else {
-                        let vc = CategoryViewController()
-                        vc.modalPresentationStyle = .fullScreen
-                        self!.present(vc, animated: true)
+                        self!.navigationController?.pushViewController(CategoryViewController(), animated: true)
                     }
                     
                 }
