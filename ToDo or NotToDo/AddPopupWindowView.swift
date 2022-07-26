@@ -9,13 +9,6 @@ import UIKit
 
 class AddPopupWindowView: UIView {
     
-    let popupView: UIView = {
-        var view = UIView()
-        view.backgroundColor = .lightGray
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     let popupTitle: UILabel = {
         var label = UILabel()
         label.text = "Add Category"
@@ -26,22 +19,23 @@ class AddPopupWindowView: UIView {
     
     let popupTextField: UITextField = {
         var textField = UITextField()
-        textField.backgroundColor = .white
         textField.placeholder = "Category"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
-    let addButton: UIButton = {
+    lazy var addButton: UIButton = {
         var button = UIButton()
         button.setTitle("Add", for: .normal)
+        button.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    let cancelButton: UIButton = {
+    lazy var cancelButton: UIButton = {
         var button = UIButton()
         button.setTitle("Cancel", for: .normal)
+        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -54,39 +48,55 @@ class AddPopupWindowView: UIView {
         return stack
     }()
     
+    let container: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        view.layer.cornerRadius = 24
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     init() {
         super.init(frame: CGRect.zero)
-        backgroundColor = .lightGray
+        frame = UIScreen.main.bounds
         
-        popupView.addSubview(popupTitle)
-        popupView.addSubview(popupTextField)
-        popupView.addSubview(buttonStack)
-        
-        addSubview(popupView)
+        addSubview(container)
+        container.addSubview(popupTitle)
+        container.addSubview(popupTextField)
+        container.addSubview(buttonStack)
         
         NSLayoutConstraint.activate([
-            popupView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            popupView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            popupView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            popupView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            container.centerXAnchor.constraint(equalTo: centerXAnchor),
+            container.centerYAnchor.constraint(equalTo: centerYAnchor),
+            container.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
+            container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
             
-            popupTitle.topAnchor.constraint(equalTo: popupView.topAnchor),
-            popupTitle.leadingAnchor.constraint(equalTo: popupView.leadingAnchor),
-            popupTitle.trailingAnchor.constraint(equalTo: popupView.trailingAnchor),
+            popupTitle.topAnchor.constraint(equalTo: container.topAnchor),
+            popupTitle.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            popupTitle.trailingAnchor.constraint(equalTo: container.trailingAnchor),
             popupTitle.bottomAnchor.constraint(equalTo: popupTextField.bottomAnchor),
-            
-            popupTextField.centerXAnchor.constraint(equalTo: popupView.centerXAnchor),
-            popupTextField.centerYAnchor.constraint(equalTo: popupView.centerYAnchor),
+
+            popupTextField.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            popupTextField.centerYAnchor.constraint(equalTo: container.centerYAnchor),
             popupTextField.heightAnchor.constraint(equalToConstant: 50),
-            popupTextField.widthAnchor.constraint(equalTo: popupView.widthAnchor, multiplier: 0.8),
-            
-            
-            buttonStack.topAnchor.constraint(equalTo: popupTextField.bottomAnchor),
-            buttonStack.leadingAnchor.constraint(equalTo: popupView.leadingAnchor),
-            buttonStack.trailingAnchor.constraint(equalTo: popupView.trailingAnchor),
-            buttonStack.bottomAnchor.constraint(equalTo: popupView.bottomAnchor)
+            popupTextField.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.8),
+
+            buttonStack.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            buttonStack.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            buttonStack.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -20)
         ])
-        
+    }
+    
+    @objc func addCategory() {
+        if let category = popupTextField.text {
+            print(category)
+            popupTextField.text = ""
+            self.isHidden = true
+        }
+    }
+    
+    @objc func dismissView() {
+        self.isHidden = true
     }
     
     required init?(coder: NSCoder) {
