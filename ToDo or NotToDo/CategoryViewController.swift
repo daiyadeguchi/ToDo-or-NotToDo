@@ -37,6 +37,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func loadCategory() {
         firestore.collection("items").order(by: "date").addSnapshotListener { querySnapshot, error in
+            self.items = []
             if let e = error {
                 print(e.localizedDescription)
             } else {
