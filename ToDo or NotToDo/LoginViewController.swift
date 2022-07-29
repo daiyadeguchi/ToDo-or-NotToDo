@@ -54,8 +54,14 @@ class LoginViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    let userDefault = UserDefaults.standard
+    let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
 
     override func viewDidLoad() {
+        if userDefault.bool(forKey: "usersignedin") {
+            self.navigationController?.pushViewController(CategoryViewController(), animated: true)
+        }
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         navigationItem.title = "WELCOME"
@@ -116,6 +122,8 @@ class LoginViewController: UIViewController {
                     if let e = error {
                         print(e.localizedDescription)
                     } else {
+                        self.userDefault.set(true, forKey: "usersignedin")
+                        self.userDefault.synchronize()
                         self.navigationController?.pushViewController(CategoryViewController(), animated: true)
                     }
                 }
@@ -127,6 +135,8 @@ class LoginViewController: UIViewController {
                     if let e = error {
                         print(e.localizedDescription)
                     } else {
+                        self?.userDefault.set(true, forKey: "usersignedin")
+                        self?.userDefault.synchronize()
                         self!.navigationController?.pushViewController(CategoryViewController(), animated: true)
                     }
                     
