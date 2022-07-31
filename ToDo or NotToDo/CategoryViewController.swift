@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseFirestore
 
-class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategoryViewController: UIViewController {
     
     var tableView = UITableView()
     var popup = AddPopupWindowView()
@@ -17,7 +17,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
         
         tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         tableView.delegate = self
@@ -57,6 +56,12 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    @objc func addCategory() {
+        popup.isHidden = false
+    }
+}
+
+extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -70,7 +75,21 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    @objc func addCategory() {
-        popup.isHidden = false
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            firestore.collection("items").whereField("category", isEqualTo: items[indexPath.row].category).getDocuments { queryDocument, error in
+                if let e = error {
+                    print(e.localizedDescription)
+                } else {
+                    if let snapshotDocuments = queryDocument?.documents {
+                        for doc in snapshotDocuments {
+                            doc.reference.delete()
+                        }
+                    }
+                }
+            }
+            items.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 }
