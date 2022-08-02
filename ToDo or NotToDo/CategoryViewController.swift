@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class CategoryViewController: UIViewController {
     
@@ -35,7 +36,7 @@ class CategoryViewController: UIViewController {
     }
     
     private func loadCategory() {
-        firestore.collection("items").order(by: "date").addSnapshotListener { querySnapshot, error in
+        firestore.collection("items").whereField("owner", isEqualTo: Auth.auth().currentUser?.email! as Any).order(by: "date").addSnapshotListener { querySnapshot, error in
             self.items = []
             if let e = error {
                 print(e.localizedDescription)
