@@ -76,6 +76,10 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(ItemViewController(), animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             firestore.collection("items").whereField("category", isEqualTo: items[indexPath.row].category).getDocuments { queryDocument, error in

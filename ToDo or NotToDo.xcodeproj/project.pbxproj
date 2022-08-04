@@ -20,6 +20,7 @@
 		544ED8592888C16B00D73052 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544ED8582888C16B00D73052 /* CategoryViewController.swift */; };
 		544ED85B288F498000D73052 /* AddPopupWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544ED85A288F498000D73052 /* AddPopupWindowView.swift */; };
 		5493FBEF2899D5A600842A12 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5493FBEE2899D5A600842A12 /* IQKeyboardManagerSwift */; };
+		5493FBF1289C856900842A12 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493FBF0289C856900842A12 /* ItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		544ED8562884E6F800D73052 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		544ED8582888C16B00D73052 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		544ED85A288F498000D73052 /* AddPopupWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPopupWindowView.swift; sourceTree = "<group>"; };
+		5493FBF0289C856900842A12 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				544ED84428823D8000D73052 /* LaunchScreen.storyboard */,
 				544ED84728823D8000D73052 /* Info.plist */,
 				544ED8562884E6F800D73052 /* GoogleService-Info.plist */,
+				5493FBF0289C856900842A12 /* ItemViewController.swift */,
 			);
 			path = "ToDo or NotToDo";
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5493FBF1289C856900842A12 /* ItemViewController.swift in Sources */,
 				544ED85B288F498000D73052 /* AddPopupWindowView.swift in Sources */,
 				544ED8592888C16B00D73052 /* CategoryViewController.swift in Sources */,
 				544ED83E28823D7F00D73052 /* LoginViewController.swift in Sources */,
