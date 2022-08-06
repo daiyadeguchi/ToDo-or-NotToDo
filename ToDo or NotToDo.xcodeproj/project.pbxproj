@@ -21,6 +21,7 @@
 		544ED85B288F498000D73052 /* AddPopupWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544ED85A288F498000D73052 /* AddPopupWindowView.swift */; };
 		5493FBEF2899D5A600842A12 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5493FBEE2899D5A600842A12 /* IQKeyboardManagerSwift */; };
 		5493FBF1289C856900842A12 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493FBF0289C856900842A12 /* ItemViewController.swift */; };
+		5493FBF4289DF9CE00842A12 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493FBF3289DF9CE00842A12 /* FirestoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		544ED8582888C16B00D73052 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		544ED85A288F498000D73052 /* AddPopupWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPopupWindowView.swift; sourceTree = "<group>"; };
 		5493FBF0289C856900842A12 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		5493FBF3289DF9CE00842A12 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,16 +83,17 @@
 		544ED83828823D7F00D73052 /* ToDo or NotToDo */ = {
 			isa = PBXGroup;
 			children = (
+				5493FBF2289DF9BF00842A12 /* Service */,
 				544ED85E2891FE0000D73052 /* Delegates */,
 				54349D2A2894988B0032C77E /* Model */,
 				544ED83D28823D7F00D73052 /* LoginViewController.swift */,
 				544ED8582888C16B00D73052 /* CategoryViewController.swift */,
+				5493FBF0289C856900842A12 /* ItemViewController.swift */,
 				544ED85A288F498000D73052 /* AddPopupWindowView.swift */,
 				544ED84228823D8000D73052 /* Assets.xcassets */,
 				544ED84428823D8000D73052 /* LaunchScreen.storyboard */,
 				544ED84728823D8000D73052 /* Info.plist */,
 				544ED8562884E6F800D73052 /* GoogleService-Info.plist */,
-				5493FBF0289C856900842A12 /* ItemViewController.swift */,
 			);
 			path = "ToDo or NotToDo";
 			sourceTree = "<group>";
@@ -109,6 +112,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5493FBF2289DF9BF00842A12 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5493FBF3289DF9CE00842A12 /* FirestoreManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 				544ED83A28823D7F00D73052 /* AppDelegate.swift in Sources */,
 				54349D2C289499770032C77E /* Items.swift in Sources */,
 				544ED83C28823D7F00D73052 /* SceneDelegate.swift in Sources */,
+				5493FBF4289DF9CE00842A12 /* FirestoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

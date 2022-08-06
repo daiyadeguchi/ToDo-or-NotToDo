@@ -7,7 +7,6 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseFirestore
 
 class AddPopupWindowView: UIView {
     
@@ -58,8 +57,6 @@ class AddPopupWindowView: UIView {
         return view
     }()
     
-    let db = Firestore.firestore()
-    
     init() {
         super.init(frame: CGRect.zero)
         frame = UIScreen.main.bounds
@@ -93,20 +90,10 @@ class AddPopupWindowView: UIView {
     
     @objc func addCategory() {
         if let category = popupTextField.text, let owner = Auth.auth().currentUser?.email {
-            db.collection("items").addDocument(data: [
-                "owner": owner,
-                "category": category,
-                "date": Date().timeIntervalSince1970
-            ]) { (error) in
-                if let e = error {
-                    print(e.localizedDescription)
-                } else {
-                    print("Category added")
-                    DispatchQueue.main.async {
-                        self.popupTextField.text = ""
-                        self.isHidden = true
-                    }
-                }
+            FirestoreManager.shared.addCategory(owner: owner, category: category)
+            DispatchQueue.main.async {
+                self.popupTextField.text = ""
+                self.isHidden = true
             }
         }
     }
