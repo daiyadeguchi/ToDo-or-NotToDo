@@ -22,6 +22,7 @@
 		5493FBEF2899D5A600842A12 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5493FBEE2899D5A600842A12 /* IQKeyboardManagerSwift */; };
 		5493FBF1289C856900842A12 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493FBF0289C856900842A12 /* ItemViewController.swift */; };
 		5493FBF4289DF9CE00842A12 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493FBF3289DF9CE00842A12 /* FirestoreManager.swift */; };
+		5493FBF6289DFBF700842A12 /* CategoryViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493FBF5289DFBF700842A12 /* CategoryViewController+UITableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		544ED85A288F498000D73052 /* AddPopupWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPopupWindowView.swift; sourceTree = "<group>"; };
 		5493FBF0289C856900842A12 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		5493FBF3289DF9CE00842A12 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		5493FBF5289DFBF700842A12 /* CategoryViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+UITableView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,10 +88,7 @@
 				5493FBF2289DF9BF00842A12 /* Service */,
 				544ED85E2891FE0000D73052 /* Delegates */,
 				54349D2A2894988B0032C77E /* Model */,
-				544ED83D28823D7F00D73052 /* LoginViewController.swift */,
-				544ED8582888C16B00D73052 /* CategoryViewController.swift */,
-				5493FBF0289C856900842A12 /* ItemViewController.swift */,
-				544ED85A288F498000D73052 /* AddPopupWindowView.swift */,
+				5493FBF8289DFC8000842A12 /* View */,
 				544ED84228823D8000D73052 /* Assets.xcassets */,
 				544ED84428823D8000D73052 /* LaunchScreen.storyboard */,
 				544ED84728823D8000D73052 /* Info.plist */,
@@ -120,6 +119,18 @@
 				5493FBF3289DF9CE00842A12 /* FirestoreManager.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		5493FBF8289DFC8000842A12 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				544ED83D28823D7F00D73052 /* LoginViewController.swift */,
+				544ED8582888C16B00D73052 /* CategoryViewController.swift */,
+				5493FBF5289DFBF700842A12 /* CategoryViewController+UITableView.swift */,
+				5493FBF0289C856900842A12 /* ItemViewController.swift */,
+				544ED85A288F498000D73052 /* AddPopupWindowView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5493FBF1289C856900842A12 /* ItemViewController.swift in Sources */,
+				5493FBF6289DFBF700842A12 /* CategoryViewController+UITableView.swift in Sources */,
 				544ED85B288F498000D73052 /* AddPopupWindowView.swift in Sources */,
 				544ED8592888C16B00D73052 /* CategoryViewController.swift in Sources */,
 				544ED83E28823D7F00D73052 /* LoginViewController.swift in Sources */,
