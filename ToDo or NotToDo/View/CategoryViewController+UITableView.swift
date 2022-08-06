@@ -23,7 +23,11 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(ItemViewController(), animated: true)
+        let item = items[indexPath.row]
+        
+        let itemVC = ItemViewController()
+        itemVC.category = item.category
+        navigationController?.pushViewController(itemVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

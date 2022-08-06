@@ -26,4 +26,23 @@ class FirestoreManager {
             }
         }
     }
+    
+    func addItem(category: String, item: String) {
+        db.collection("items").whereField("category", isEqualTo: category).getDocuments { querySnapshot, error in
+            if let snapshotDocuments = querySnapshot?.documents {
+                for doc in snapshotDocuments {
+                    if var items = doc.get("item") as? [String] {
+                        items.append(item)
+                        doc.reference.updateData([
+                            "item": items
+                        ])
+                    } else {
+                        doc.reference.updateData([
+                            "item": [item]
+                        ])
+                    }
+                }
+            }
+        }
+    }
 }

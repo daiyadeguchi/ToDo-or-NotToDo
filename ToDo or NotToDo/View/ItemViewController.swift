@@ -9,6 +9,7 @@ import UIKit
 
 class ItemViewController: UIViewController {
     
+    var category: String = ""
     var tableView = UITableView()
     
     override func viewDidLoad() {
@@ -26,7 +27,7 @@ class ItemViewController: UIViewController {
     }
     
     @objc func addItem() {
-        print("additem")
+        FirestoreManager.shared.addItem(category: category, item: "item")
     }
 }
 
