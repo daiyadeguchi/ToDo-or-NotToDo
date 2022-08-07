@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		54349D2C289499770032C77E /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54349D2B289499770032C77E /* Items.swift */; };
+		54349D2C289499770032C77E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54349D2B289499770032C77E /* Category.swift */; };
 		544ED83A28823D7F00D73052 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544ED83928823D7F00D73052 /* AppDelegate.swift */; };
 		544ED83C28823D7F00D73052 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544ED83B28823D7F00D73052 /* SceneDelegate.swift */; };
 		544ED83E28823D7F00D73052 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544ED83D28823D7F00D73052 /* LoginViewController.swift */; };
@@ -23,10 +23,11 @@
 		5493FBF1289C856900842A12 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493FBF0289C856900842A12 /* ItemViewController.swift */; };
 		5493FBF4289DF9CE00842A12 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493FBF3289DF9CE00842A12 /* FirestoreManager.swift */; };
 		5493FBF6289DFBF700842A12 /* CategoryViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493FBF5289DFBF700842A12 /* CategoryViewController+UITableView.swift */; };
+		5493FBFC28A07CAF00842A12 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493FBFB28A07CAF00842A12 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		54349D2B289499770032C77E /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		54349D2B289499770032C77E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		544ED83628823D7F00D73052 /* ToDo or NotToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo or NotToDo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		544ED83928823D7F00D73052 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		544ED83B28823D7F00D73052 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +41,7 @@
 		5493FBF0289C856900842A12 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		5493FBF3289DF9CE00842A12 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		5493FBF5289DFBF700842A12 /* CategoryViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+UITableView.swift"; sourceTree = "<group>"; };
+		5493FBFB28A07CAF00842A12 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,8 @@
 		54349D2A2894988B0032C77E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				54349D2B289499770032C77E /* Items.swift */,
+				54349D2B289499770032C77E /* Category.swift */,
+				5493FBFB28A07CAF00842A12 /* Item.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -214,13 +217,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5493FBFC28A07CAF00842A12 /* Item.swift in Sources */,
 				5493FBF1289C856900842A12 /* ItemViewController.swift in Sources */,
 				5493FBF6289DFBF700842A12 /* CategoryViewController+UITableView.swift in Sources */,
 				544ED85B288F498000D73052 /* AddPopupWindowView.swift in Sources */,
 				544ED8592888C16B00D73052 /* CategoryViewController.swift in Sources */,
 				544ED83E28823D7F00D73052 /* LoginViewController.swift in Sources */,
 				544ED83A28823D7F00D73052 /* AppDelegate.swift in Sources */,
-				54349D2C289499770032C77E /* Items.swift in Sources */,
+				54349D2C289499770032C77E /* Category.swift in Sources */,
 				544ED83C28823D7F00D73052 /* SceneDelegate.swift in Sources */,
 				5493FBF4289DF9CE00842A12 /* FirestoreManager.swift in Sources */,
 			);

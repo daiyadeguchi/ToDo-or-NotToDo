@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Items: Codable {
+struct Category: Codable {
     let category: String
     let owner: String
 }
