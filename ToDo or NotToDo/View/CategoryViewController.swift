@@ -14,7 +14,7 @@ class CategoryViewController: UIViewController {
     var tableView = UITableView()
     var popup = AddPopupWindowView()
     let firestore = Firestore.firestore()
-    var items: [Items] = []
+    var items: [Category] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class CategoryViewController: UIViewController {
                     for doc in snapshotDocuments {
                         let data = doc.data()
                         if let category = data["category"] as? String, let owner = data["owner"] as? String {
-                            self.items.append(Items(category: category, owner: owner))
+                            self.items.append(Category(category: category, owner: owner))
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
                                 self.tableView.scrollToRow(at: IndexPath(row: self.items.count - 1, section: 0), at: .top, animated: true)
