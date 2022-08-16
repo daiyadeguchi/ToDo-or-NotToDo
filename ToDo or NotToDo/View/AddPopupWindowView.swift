@@ -10,9 +10,11 @@ import FirebaseAuth
 
 class AddPopupWindowView: UIView {
     
+    var isCategoryView = true
+    var category = ""
+    
     let popupTitle: UILabel = {
         var label = UILabel()
-        label.text = "Add Category"
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -20,7 +22,6 @@ class AddPopupWindowView: UIView {
     
     let popupTextField: UITextField = {
         var textField = UITextField()
-        textField.placeholder = "Category"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -28,7 +29,7 @@ class AddPopupWindowView: UIView {
     lazy var addButton: UIButton = {
         var button = UIButton()
         button.setTitle("Add", for: .normal)
-        button.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addEntry), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -88,9 +89,13 @@ class AddPopupWindowView: UIView {
         ])
     }
     
-    @objc func addCategory() {
-        if let category = popupTextField.text, let owner = Auth.auth().currentUser?.email {
-            FirestoreManager.shared.addCategory(owner: owner, category: category)
+    @objc func addEntry() {
+        if let textFieldInput = popupTextField.text, let owner = Auth.auth().currentUser?.email {
+            if isCategoryView {
+                FirestoreManager.shared.addCategory(owner: owner, category: textFieldInput)
+            } else {
+                FirestoreManager.shared.addItem(category: self.category, item: textFieldInput)
+            }
             DispatchQueue.main.async {
                 self.popupTextField.text = ""
                 self.isHidden = true
