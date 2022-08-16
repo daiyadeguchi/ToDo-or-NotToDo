@@ -12,6 +12,14 @@ class ItemViewController: UIViewController {
     
     var category: String = ""
     var tableView = UITableView()
+    lazy var popup: AddPopupWindowView = {
+        var window = AddPopupWindowView()
+        window.isCategoryView = false
+        window.category = category
+        window.popupTitle.text = "Add Item"
+        window.popupTextField.placeholder = "Item"
+        return window
+    }()
     var items: [Item] = []
     let firestore = Firestore.firestore()
     
@@ -22,6 +30,8 @@ class ItemViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
+        view.addSubview(popup)
+        popup.isHidden = true
         
         navigationItem.title = "Item"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
@@ -54,7 +64,7 @@ class ItemViewController: UIViewController {
     }
     
     @objc func addItem() {
-        FirestoreManager.shared.addItem(category: category, item: "item")
+        popup.isHidden = false
     }
 }
 
@@ -75,6 +85,5 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         config.text = item
         cell.contentConfiguration = config
         return cell
-        
     }
 }

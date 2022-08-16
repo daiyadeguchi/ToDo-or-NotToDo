@@ -12,7 +12,13 @@ import FirebaseAuth
 class CategoryViewController: UIViewController {
     
     var tableView = UITableView()
-    var popup = AddPopupWindowView()
+    var popup: AddPopupWindowView = {
+        var window = AddPopupWindowView()
+        window.isCategoryView = true
+        window.popupTitle.text = "Add Category"
+        window.popupTextField.placeholder = "Category"
+        return window
+    }()
     let firestore = Firestore.firestore()
     var items: [Category] = []
     
