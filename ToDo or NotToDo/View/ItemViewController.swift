@@ -70,19 +70,13 @@ class ItemViewController: UIViewController {
 
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !items.isEmpty {
-            return items[0].item.count
-        } else {
-            return 0
-        }
-        
+        return items.isEmpty ? 0 : items[0].item.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = items[0].item[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         var config = cell.defaultContentConfiguration()
-        config.text = item
+        config.text = items[0].item[indexPath.row]
         cell.contentConfiguration = config
         return cell
     }
