@@ -29,6 +29,7 @@ class AddPopupWindowView: UIView {
     lazy var addButton: UIButton = {
         var button = UIButton()
         button.setTitle("Add", for: .normal)
+        button.setTitleColor(UIColor.systemGray, for: .normal)
         button.addTarget(self, action: #selector(addEntry), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -37,6 +38,7 @@ class AddPopupWindowView: UIView {
     lazy var cancelButton: UIButton = {
         var button = UIButton()
         button.setTitle("Cancel", for: .normal)
+        button.setTitleColor(UIColor.systemGray, for: .normal)
         button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -52,7 +54,7 @@ class AddPopupWindowView: UIView {
     
     let container: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .secondarySystemBackground
         view.layer.cornerRadius = 24
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -61,7 +63,10 @@ class AddPopupWindowView: UIView {
     init() {
         super.init(frame: CGRect.zero)
         frame = UIScreen.main.bounds
-        
+        setupView()
+    }
+    
+    private func setupView() {
         addSubview(container)
         container.addSubview(popupTitle)
         container.addSubview(popupTextField)
