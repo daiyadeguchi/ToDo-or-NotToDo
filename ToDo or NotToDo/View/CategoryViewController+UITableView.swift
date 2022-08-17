@@ -10,22 +10,20 @@ import FirebaseFirestore
 
 extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return items.isEmpty ? 0 : items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         var config = cell.defaultContentConfiguration()
-        config.text = item.category
+        config.text = items[indexPath.row].category
         cell.contentConfiguration = config
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
         let itemVC = ItemViewController()
-        itemVC.category = item.category
+        itemVC.category = items[indexPath.row].category
         navigationController?.pushViewController(itemVC, animated: true)
     }
     
