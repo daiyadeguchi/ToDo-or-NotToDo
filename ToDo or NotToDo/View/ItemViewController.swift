@@ -38,7 +38,19 @@ class ItemViewController: UIViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         
+        setupGestureRecognizers()
+        
         loadItem()
+    }
+    
+    private func setupGestureRecognizers() {
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(swipe:)))
+        leftSwipe.direction = UISwipeGestureRecognizer.Direction.left
+        view.addGestureRecognizer(leftSwipe)
+    }
+    
+    @objc func swipeAction(swipe: UISwipeGestureRecognizer) {
+        self.dismiss(animated: true)
     }
     
     private func loadItem() {
