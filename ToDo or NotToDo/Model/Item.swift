@@ -8,5 +8,5 @@
 import Foundation
 
 struct Item {
-    let item: [String]
+    var item: [String]
 }

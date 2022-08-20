@@ -39,7 +39,6 @@ class ItemViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         
         setupGestureRecognizers()
-        
         loadItem()
     }
     
@@ -88,8 +87,36 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         var config = cell.defaultContentConfiguration()
-        config.text = items[0].item[indexPath.row]
-        cell.contentConfiguration = config
+        if !items[0].item[indexPath.row].isEmpty {
+            config.text = items[0].item[indexPath.row]
+            cell.contentConfiguration = config
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            firestore.collection("items").whereField("category", isEqualTo: category).getDocuments { queryDocument, error in
+                if let e = error {
+                    print(e.localizedDescription)
+                } else {
+                    if let snapshotDocuments = queryDocument?.documents {
+                        for doc in snapshotDocuments {
+                            if !self.items[0].item.isEmpty {
+                                doc.reference.updateData([
+                                    "item": self.items[0].item
+                                ])
+                            } else {
+                                doc.reference.updateData([
+                                    "item": FieldValue.delete()
+                                ])
+                            }
+                        }
+                    }
+                }
+            }
+            items[0].item.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 }
