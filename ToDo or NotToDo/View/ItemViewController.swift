@@ -33,7 +33,7 @@ class ItemViewController: UIViewController {
         view.addSubview(popup)
         popup.isHidden = true
         
-        navigationItem.title = "Item"
+        navigationItem.title = category
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
@@ -61,8 +61,9 @@ class ItemViewController: UIViewController {
                 if let snapshotDocuments = querySnapshot?.documents {
                     for doc in snapshotDocuments {
                         let data = doc.data()
-                        if let item = data["item"] as? [String] {
+                        if let item = data["item"] as? [[String: Any]] {
                             self.items.append(Item(item: item))
+                            print(self.items)
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
                                 self.tableView.scrollToRow(at: IndexPath(row: self.items.count - 1, section: 0), at: .top, animated: true)
@@ -88,7 +89,16 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         var config = cell.defaultContentConfiguration()
         if !items[0].item[indexPath.row].isEmpty {
-            config.text = items[0].item[indexPath.row]
+            for (key, value) in items[0].item[indexPath.row] {
+                if key == "isDone" {
+                    if let isDone = value as? Bool {
+                        config.image = isDone ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle")
+                    }
+                }
+                if key == "item" {
+                    config.text = value as? String
+                }
+            }
             cell.contentConfiguration = config
         }
         return cell

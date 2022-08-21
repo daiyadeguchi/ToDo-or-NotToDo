@@ -31,14 +31,15 @@ class FirestoreManager {
         db.collection("items").whereField("category", isEqualTo: category).getDocuments { querySnapshot, error in
             if let snapshotDocuments = querySnapshot?.documents {
                 for doc in snapshotDocuments {
-                    if var items = doc.get("item") as? [String] {
-                        items.append(item)
+                    if var items = doc.get("item") as? [[String : Any]] {
+                        let itemDictionary: [String : Any] = ["item": item, "isDone": false]
+                        items.append(itemDictionary)
                         doc.reference.updateData([
                             "item": items
                         ])
                     } else {
                         doc.reference.updateData([
-                            "item": [item]
+                            "item": [["item": item, "isDone": false]]
                         ])
                     }
                 }
