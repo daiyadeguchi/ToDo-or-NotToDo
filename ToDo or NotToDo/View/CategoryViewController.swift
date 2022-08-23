@@ -20,6 +20,8 @@ class CategoryViewController: UIViewController {
         return window
     }()
     let firestore = Firestore.firestore()
+    var listener: ListenerRegistration?
+    let userDefault = UserDefaults.standard
     var items: [Category] = []
     
     override func viewDidLoad() {
@@ -35,6 +37,7 @@ class CategoryViewController: UIViewController {
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.title = "Category"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategory))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "SignOut", style: .plain, target: self, action: #selector(signOutPressed))
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         
@@ -42,7 +45,7 @@ class CategoryViewController: UIViewController {
     }
     
     private func loadCategory() {
-        firestore.collection("items").whereField("owner", isEqualTo: Auth.auth().currentUser?.email! as Any).order(by: "date").addSnapshotListener { querySnapshot, error in
+        listener = firestore.collection("items").whereField("owner", isEqualTo: Auth.auth().currentUser?.email! as Any).order(by: "date").addSnapshotListener { querySnapshot, error in
             self.items = []
             if let e = error {
                 print(e.localizedDescription)
@@ -65,5 +68,18 @@ class CategoryViewController: UIViewController {
     
     @objc func addCategory() {
         popup.isHidden = false
+    }
+    
+    @objc func signOutPressed() {
+        listener?.remove()
+        do {
+            try Auth.auth().signOut()
+            self.userDefault.set(false, forKey: "usersignedin")
+            self.userDefault.synchronize()
+            
+            navigationController?.popToRootViewController(animated: true)
+        } catch let error as NSError {
+            print("Error signing out: %@", error)
+        }
     }
 }
