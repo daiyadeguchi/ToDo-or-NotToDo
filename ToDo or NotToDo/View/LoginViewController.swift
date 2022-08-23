@@ -13,7 +13,7 @@ class LoginViewController: UIViewController {
     lazy var segmentedControl: UISegmentedControl = {
         var segControl = UISegmentedControl(items: ["Sign Up", "Sign In"])
         segControl.selectedSegmentIndex = 0
-        segControl.backgroundColor = .lightGray
+//        segControl.backgroundColor = .systemGray
         segControl.addTarget(self, action: #selector(self.segmentedValueChanged(_:)), for: .valueChanged)
         segControl.translatesAutoresizingMaskIntoConstraints = false
         return segControl
@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
         text.placeholder = "Email"
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
         text.leftViewMode = .always
-        text.backgroundColor = .lightGray
+//        text.backgroundColor = .systemGray
         text.layer.cornerRadius = 10
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
         text.leftViewMode = .always
         text.isSecureTextEntry = true
-        text.backgroundColor = .lightGray
+//        text.backgroundColor = .systemGray
         text.layer.cornerRadius = 10
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
@@ -46,7 +46,7 @@ class LoginViewController: UIViewController {
         var config = UIButton.Configuration.filled()
         config.title = "Sign Up"
         config.buttonSize = .large
-        config.baseBackgroundColor = .lightGray
+//        config.baseBackgroundColor = .systemGray
         config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         
         var button = UIButton(configuration: config, primaryAction: nil)
