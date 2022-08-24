@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		54349D2C289499770032C77E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54349D2B289499770032C77E /* Category.swift */; };
+		543D88AD28B6E77600026D02 /* ItemViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D88AC28B6E77600026D02 /* ItemViewController+UITableView.swift */; };
 		544ED83A28823D7F00D73052 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544ED83928823D7F00D73052 /* AppDelegate.swift */; };
 		544ED83C28823D7F00D73052 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544ED83B28823D7F00D73052 /* SceneDelegate.swift */; };
 		544ED83E28823D7F00D73052 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544ED83D28823D7F00D73052 /* LoginViewController.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		54349D2B289499770032C77E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		543D88AC28B6E77600026D02 /* ItemViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemViewController+UITableView.swift"; sourceTree = "<group>"; };
 		544ED83628823D7F00D73052 /* ToDo or NotToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo or NotToDo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		544ED83928823D7F00D73052 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		544ED83B28823D7F00D73052 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				544ED8582888C16B00D73052 /* CategoryViewController.swift */,
 				5493FBF5289DFBF700842A12 /* CategoryViewController+UITableView.swift */,
 				5493FBF0289C856900842A12 /* ItemViewController.swift */,
+				543D88AC28B6E77600026D02 /* ItemViewController+UITableView.swift */,
 				544ED85A288F498000D73052 /* AddPopupWindowView.swift */,
 			);
 			path = View;
@@ -221,6 +224,7 @@
 				5493FBF1289C856900842A12 /* ItemViewController.swift in Sources */,
 				5493FBF6289DFBF700842A12 /* CategoryViewController+UITableView.swift in Sources */,
 				544ED85B288F498000D73052 /* AddPopupWindowView.swift in Sources */,
+				543D88AD28B6E77600026D02 /* ItemViewController+UITableView.swift in Sources */,
 				544ED8592888C16B00D73052 /* CategoryViewController.swift in Sources */,
 				544ED83E28823D7F00D73052 /* LoginViewController.swift in Sources */,
 				544ED83A28823D7F00D73052 /* AppDelegate.swift in Sources */,
