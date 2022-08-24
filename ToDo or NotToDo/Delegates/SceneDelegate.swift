@@ -27,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navBarAppearance.backgroundColor = UIColor.systemBackground
         nav.navigationBar.standardAppearance = navBarAppearance
         nav.navigationBar.scrollEdgeAppearance = navBarAppearance
+        nav.navigationBar.tintColor = .secondaryLabel
         return nav
     }
 
