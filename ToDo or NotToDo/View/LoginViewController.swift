@@ -19,6 +19,13 @@ class LoginViewController: UIViewController {
         return segControl
     }()
     
+    lazy var segmentedView: UIView = {
+        let segmentView: UIView = UIView()
+        segmentView.translatesAutoresizingMaskIntoConstraints = false
+        segmentView.addSubview(segmentedControl)
+        return segmentView
+    }()
+    
     let emailTextField: UITextField = {
         var text = UITextField()
         text.placeholder = "Email"
@@ -42,6 +49,15 @@ class LoginViewController: UIViewController {
         return text
     }()
     
+    lazy var userInputView: UIStackView = {
+        let inputView: UIStackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField])
+        inputView.translatesAutoresizingMaskIntoConstraints = false
+        inputView.distribution = .equalCentering
+        inputView.axis = .vertical
+        inputView.spacing = 4
+        return inputView
+    }()
+    
     lazy var submitButton: UIButton = {
         var config = UIButton.Configuration.filled()
         config.title = "Sign Up"
@@ -51,56 +67,55 @@ class LoginViewController: UIViewController {
         
         var button = UIButton(configuration: config, primaryAction: nil)
         button.addTarget(self, action: #selector(self.buttonPressed(_:)), for: .touchUpInside)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
+    lazy var buttonView: UIView = {
+        let btnView: UIView = UIView()
+        btnView.translatesAutoresizingMaskIntoConstraints = false
+        btnView.addSubview(submitButton)
+        return btnView
+    }()
+    
+    lazy var loginStack: UIStackView = {
+        let liStack = UIStackView(arrangedSubviews: [segmentedView, userInputView, buttonView])
+        liStack.translatesAutoresizingMaskIntoConstraints = false
+        liStack.axis = .vertical
+        return liStack
+    }()
+    
     let userDefault = UserDefaults.standard
-    let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
 
     override func viewDidLoad() {
+        // push CategoryVC if user have signed in before (usersignedin == true in userdefault)
         if userDefault.bool(forKey: "usersignedin") {
             self.navigationController?.pushViewController(CategoryViewController(), animated: true)
         }
+        
         super.viewDidLoad()
+    }
+    
+    private func setupView() {
         view.backgroundColor = .systemBackground
         navigationItem.title = "WELCOME"
-        
-        let segmentView: UIView = UIView()
-        segmentView.translatesAutoresizingMaskIntoConstraints = false
-        segmentView.addSubview(segmentedControl)
-        
-        let userInputView: UIStackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField])
-        userInputView.translatesAutoresizingMaskIntoConstraints = false
-        userInputView.distribution = .equalCentering
-        userInputView.axis = .vertical
-        userInputView.spacing = 4
-        
-        let buttonView: UIView = UIView()
-        buttonView.translatesAutoresizingMaskIntoConstraints = false
-        buttonView.addSubview(submitButton)
-        
-        let loginStack = UIStackView(arrangedSubviews: [segmentView, userInputView, buttonView])
-        loginStack.translatesAutoresizingMaskIntoConstraints = false
-        loginStack.axis = .vertical
-        
         view.addSubview(loginStack)
-        
         NSLayoutConstraint.activate([
             loginStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             loginStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             loginStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             loginStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            segmentView.heightAnchor.constraint(equalTo: loginStack.heightAnchor, multiplier: 0.4),
+            segmentedView.heightAnchor.constraint(equalTo: loginStack.heightAnchor, multiplier: 0.4),
             userInputView.heightAnchor.constraint(equalTo: loginStack.heightAnchor, multiplier: 0.2),
             buttonView.heightAnchor.constraint(equalTo: loginStack.heightAnchor, multiplier: 0.4),
             
             emailTextField.heightAnchor.constraint(equalToConstant: 50),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             
-            segmentedControl.centerXAnchor.constraint(equalTo: segmentView.centerXAnchor),
-            segmentedControl.centerYAnchor.constraint(equalTo: segmentView.centerYAnchor),
+            segmentedControl.centerXAnchor.constraint(equalTo: segmentedView.centerXAnchor),
+            segmentedControl.centerYAnchor.constraint(equalTo: segmentedView.centerYAnchor),
             
             submitButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor),
             submitButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor),
