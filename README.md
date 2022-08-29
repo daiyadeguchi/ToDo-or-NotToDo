@@ -1,6 +1,7 @@
 <h1 align="center">ToDo-or-NotToDo</h1>
-<p align="center">Simple ToDo app because everyone needs one for a portfolio
-<div align="center"><img src="demo.gif"></img></div>
+<p align="center">Simple ToDo app because everyone needs one for a portfolio</br>
+(Execuse my long gif video! I will work on it!)</p>
+<div align="center"><img src="https://github.com/daiyadeguchi/ToDo-or-NotToDo/blob/main/Simulator%20Screen%20Recording%20-%20iPhone%2013%20-%202022-08-29%20at%2011.33.19.gif" width="150"></img></div>
 <h2>About</h2>
 This is a Firebase based multiplatform capable ToDo app. <br/>
 I started working on this project because I wanted to learn Firebase (Auth & Firestore) more in depth than the one that I learned in UDemy course.<br/>
