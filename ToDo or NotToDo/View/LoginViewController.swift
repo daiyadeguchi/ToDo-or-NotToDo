@@ -67,7 +67,6 @@ class LoginViewController: UIViewController {
         
         var button = UIButton(configuration: config, primaryAction: nil)
         button.addTarget(self, action: #selector(self.buttonPressed(_:)), for: .touchUpInside)
-        button.setTitleColor(UIColor.black, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -87,19 +86,22 @@ class LoginViewController: UIViewController {
     }()
     
     let userDefault = UserDefaults.standard
+    let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
 
     override func viewDidLoad() {
         // push CategoryVC if user have signed in before (usersignedin == true in userdefault)
         if userDefault.bool(forKey: "usersignedin") {
             self.navigationController?.pushViewController(CategoryViewController(), animated: true)
         }
-        
         super.viewDidLoad()
+        setupView()
     }
     
     private func setupView() {
+        initiateText()
         view.backgroundColor = .systemBackground
         navigationItem.title = "WELCOME"
+        submitButton.setTitleColor(UIColor.label, for: .normal)
         view.addSubview(loginStack)
         NSLayoutConstraint.activate([
             loginStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -125,9 +127,16 @@ class LoginViewController: UIViewController {
     @objc func segmentedValueChanged(_ sender:UISegmentedControl!) {
         if segmentedControl.selectedSegmentIndex == 0 {
             submitButton.setTitle("Sign Up", for: .normal)
+            initiateText()
         } else if segmentedControl.selectedSegmentIndex == 1 {
             submitButton.setTitle("Sign In", for: .normal)
+            initiateText()
         }
+    }
+    
+    private func initiateText() {
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     @objc func buttonPressed(_ sender:UIButton!) {
