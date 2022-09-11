@@ -146,9 +146,7 @@ class LoginViewController: UIViewController {
                     if let e = error {
                         print(e.localizedDescription)
                     } else {
-                        self.userDefault.set(true, forKey: "usersignedin")
-                        self.userDefault.synchronize()
-                        self.navigationController?.pushViewController(CategoryViewController(), animated: true)
+                        self.pushCategoryView()
                     }
                 }
             }
@@ -159,9 +157,7 @@ class LoginViewController: UIViewController {
                     if let e = error {
                         print(e.localizedDescription)
                     } else {
-                        self?.userDefault.set(true, forKey: "usersignedin")
-                        self?.userDefault.synchronize()
-                        self!.navigationController?.pushViewController(CategoryViewController(), animated: true)
+                        self?.pushCategoryView()
                     }
                     
                 }
@@ -169,6 +165,12 @@ class LoginViewController: UIViewController {
         } else {
             print("Error: Segmented Control Index doesn't exist")
         }
+    }
+    
+    private func pushCategoryView() {
+        self.userDefault.set(true, forKey: "usersignedin")
+        self.userDefault.synchronize()
+        self.navigationController?.pushViewController(CategoryViewController(), animated: true)
     }
 }
 
